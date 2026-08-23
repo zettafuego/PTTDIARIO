@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#e6c44a" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <title>Reporte de seguridad</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="stylesheet" href="styles.css?v=reportes4" />
+</head>
+<body>
+  <div class="bg"></div>
+  <main class="wrap">
+    <header class="top">
+      <div class="badge">SSOMA</div>
+      <div>
+        <h1>Reporte de seguridad</h1>
+        <p>App web: corre en GitHub Pages o en tu PC. La plantilla va en el navegador y descargas el PPT.</p>
+      </div>
+    </header>
+
+    <section class="card load" id="zona-carga">
+      <div class="load-copy">
+        <strong id="nombre-archivo">Reporte de seguridad</strong>
+        <span id="ruta-archivo">Cargando plantilla…</span>
+      </div>
+      <div class="load-actions">
+        <label class="btn ghost">
+          Usar otro PPT
+          <input id="file" type="file" accept=".pptx" hidden />
+        </label>
+        <button class="btn" id="btn-default" type="button">Volver a la plantilla</button>
+      </div>
+    </section>
+
+    <section class="stats">
+      <article class="stat">
+        <span class="label">Diapositivas</span>
+        <strong id="n-slides">—</strong>
+      </article>
+      <article class="stat">
+        <span class="label">Fecha actual</span>
+        <strong id="fecha-actual">—</strong>
+      </article>
+      <article class="stat turno-stat" id="turno-card">
+        <span class="label">Turno actual</span>
+        <strong id="turno-actual">—</strong>
+      </article>
+    </section>
+
+    <section class="grid">
+      <form class="card form" id="form">
+        <h2>Qué quieres cambiar</h2>
+
+        <label class="field">
+          <span>Número de diapositivas</span>
+          <div class="stepper">
+            <button class="btn ghost" id="slides-menos" type="button">−</button>
+            <input id="n-slides-input" type="number" min="2" max="15" value="6" />
+            <button class="btn ghost" id="slides-mas" type="button">+</button>
+          </div>
+          <small class="hint" id="slides-hint">1 portada + 1 IDS + 4 reportes</small>
+        </label>
+
+        <label class="field">
+          <span>Nueva fecha</span>
+          <div class="row">
+            <input id="fecha" type="date" required />
+            <button class="btn ghost" id="btn-hoy" type="button">Usar hoy</button>
+          </div>
+        </label>
+
+        <fieldset class="field">
+          <legend>Nuevo turno</legend>
+          <div class="toggle" role="radiogroup" aria-label="Turno">
+            <label>
+              <input type="radio" name="turno" value="DIA" checked />
+              <span>Día</span>
+            </label>
+            <label>
+              <input type="radio" name="turno" value="NOCHE" />
+              <span>Noche</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <div class="actions">
+          <button class="btn primary" type="submit">Descargar PowerPoint</button>
+        </div>
+        <p class="hint" id="hint">Se descargará como <strong id="nombre-dl">Reporte de seguridad - TURNO DIA.pptx</strong></p>
+        <p class="msg" id="msg" hidden></p>
+      </form>
+
+      <section class="card tabla-wrap">
+        <h2>Qué hay en cada diapositiva</h2>
+        <div class="tabla-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Fecha</th>
+                <th>Turno</th>
+                <th>Tipo</th>
+              </tr>
+            </thead>
+            <tbody id="tbody">
+              <tr><td colspan="4" class="empty">Cargando plantilla…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </section>
+
+    <section class="card ids">
+      <div class="ids-head">
+        <div>
+          <h2>Fotos del IDS</h2>
+          <p>En GitHub / online súbelas aquí. Bájalas de WhatsApp y elige las 3. No se deforman: se encajan en el recuadro.</p>
+        </div>
+        <div class="load-actions">
+          <label class="btn ghost">
+            Subir 3 fotos
+            <input id="fotos-multi" type="file" accept="image/*" multiple hidden />
+          </label>
+        </div>
+      </div>
+      <div class="slots" id="slots">
+        <label class="slot" data-i="0">
+          <input type="file" accept="image/*" hidden />
+          <span class="slot-n">Foto 1</span>
+          <span class="slot-ph">Clic para subir</span>
+        </label>
+        <label class="slot" data-i="1">
+          <input type="file" accept="image/*" hidden />
+          <span class="slot-n">Foto 2</span>
+          <span class="slot-ph">Clic para subir</span>
+        </label>
+        <label class="slot" data-i="2">
+          <input type="file" accept="image/*" hidden />
+          <span class="slot-n">Foto 3</span>
+          <span class="slot-ph">Clic para subir</span>
+        </label>
+      </div>
+      <label class="field labor-ids-field">
+        <span>Labor del IDS</span>
+        <input id="labor-ids" type="text" placeholder="Ej: TJ 311 B" autocomplete="off" />
+      </label>
+      <div id="wa-wrap" hidden>
+        <h3>WhatsApp en este PC (solo local)</h3>
+        <div class="load-actions" style="margin-bottom:10px">
+          <button class="btn" id="btn-3-recientes" type="button">Usar las 3 más recientes</button>
+        </div>
+        <div class="gallery" id="gallery"></div>
+      </div>
+    </section>
+
+    <section class="card reportes-fotos-card">
+      <div class="ids-head">
+        <div>
+          <h2>Reportes · desde la diapositiva 3</h2>
+          <p>En cada diapo: <strong>labor</strong>, <strong>descripción</strong>, <strong>plan de acción</strong> y fotos <strong class="tag-antes">ANTES</strong> / <strong class="tag-despues">DESPUÉS</strong>.</p>
+        </div>
+      </div>
+      <p class="empty empty-reportes" id="empty-reportes" hidden>Pon 3 o más diapositivas arriba para llenar cada reporte.</p>
+      <div id="reportes-fotos"></div>
+    </section>
+  </main>
+  <script>
+  (function () {
+    var wrap = document.getElementById("reportes-fotos");
+    if (!wrap || wrap.querySelector(".reporte-fotos")) return;
+    var nInp = document.getElementById("n-slides-input");
+    var n = Math.max(2, Math.min(15, Number(nInp && nInp.value) || 6));
+    var empty = document.getElementById("empty-reportes");
+    if (n < 3) {
+      if (empty) empty.hidden = false;
+      return;
+    }
+    if (empty) empty.hidden = true;
+    var html = "";
+    for (var s = 3; s <= n; s += 1) {
+      html +=
+        '<article class="reporte-fotos" data-slide="' + s + '">' +
+        "<h3>Diapositiva " + s + "</h3>" +
+        '<div class="campos">' +
+        '<label class="field"><span>Labor</span>' +
+        '<input type="text" data-slide="' + s + '" data-field="labor" placeholder="Ej: TJ 311 B" autocomplete="off"></label>' +
+        '<label class="field"><span>Descripción</span>' +
+        '<textarea data-slide="' + s + '" data-field="descripcion" rows="3" placeholder="Qué se observó"></textarea></label>' +
+        '<label class="field"><span>Plan de acción</span>' +
+        '<textarea data-slide="' + s + '" data-field="plan" rows="3" placeholder="Qué se va a hacer"></textarea></label>' +
+        "</div><div class=\"par-fotos\">" +
+        '<label class="slot antes" data-slide="' + s + '" data-kind="antes">' +
+        '<input type="file" accept="image/*" hidden>' +
+        '<span class="slot-n">Antes</span><span class="slot-ph">Clic para subir · borde rojo</span></label>' +
+        '<label class="slot despues" data-slide="' + s + '" data-kind="despues">' +
+        '<input type="file" accept="image/*" hidden>' +
+        '<span class="slot-n">Después</span><span class="slot-ph">Clic para subir · borde verde</span></label>' +
+        "</div></article>";
+    }
+    wrap.innerHTML = html;
+  })();
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="app.js?v=reportes4"></script>
+</body>
+</html>

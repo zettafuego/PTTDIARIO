@@ -1,0 +1,9 @@
+{
+  "name": "Reporte de seguridad",
+  "short_name": "SSOMA",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#101410",
+  "theme_color": "#e6c44a",
+  "lang": "es"
+}
