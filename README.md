@@ -1,35 +1,25 @@
-# Editor de reporte de seguridad
+# Reporte de seguridad
 
-App **web estática**. Corre en el navegador (GitHub Pages / online) y también en tu PC.
+Editor del reporte fotográfico de seguridad: fecha, turno, fotos del IDS y el antes / después de cada labor.
 
-La plantilla por defecto es `plantilla.pptx` (tu reporte original).
+## Abrir en la PC
 
-- Fecha y turno (Día / Noche)
-- Número de diapositivas
-- 3 fotos del IDS (súbelas; en GitHub no se puede leer WhatsApp de tu PC)
-- Desde la diapositiva 3: labor, descripción, plan de acción y fotos **ANTES** (rojo) / **DESPUÉS** (verde)
-- Fotos del IDS sin deformar (se encajan en el recuadro)
-- Descarga: `Reporte de seguridad - 19 de agosto - TURNO DIA.pptx`
+Doble clic en `start.bat`.
 
-## En tu PC
+Abre http://127.0.0.1:8765
 
-Doble clic en `start.bat` → `http://127.0.0.1:8765`
+Hace falta Python 3. El arranque instala lo de `requirements.txt` (`python-pptx` y `Pillow`) y levanta `server.py`. Sin ese servidor no se arma el PowerPoint.
 
-## En GitHub, online
+## En GitHub Pages
 
-Así **sí** funciona, porque ya no necesita Python ni carpetas de Windows.
+[La página](https://zettafuego.github.io/PTTDIARIO/) muestra el frente. El `.pptx` se genera solo cuando corre `server.py` en la PC.
 
-1. Crea un repo (por ejemplo `reporte-seguridad`)
-2. Sube **estos archivos** (en la raíz):
-   - `index.html`
-   - `app.js`
-   - `styles.css`
-   - `manifest.webmanifest`
-   - `plantilla.pptx`
-   - `.nojekyll`
-3. En el repo: **Settings → Pages → Deploy from a branch → main / root**
-4. Entra a:
+## Qué usa
 
-`https://TU-USUARIO.github.io/reporte-seguridad/`
+- `index.html` y `app.js` — la pantalla
+- `server.py`, `editor.py`, `fotos.py` — arman la presentación
+- `plantilla.pptx` — la plantilla del reporte
 
-En internet las 3 fotos del IDS se **suben** (bájala de WhatsApp y elígelas). GitHub no puede ver Descargas de tu PC.
+## Copia
+
+[PPtS-AUTOMATICO](https://github.com/zettafuego/PPtS-AUTOMATICO) es el mismo editor. Sigue este repositorio.
